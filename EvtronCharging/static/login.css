@@ -1,0 +1,18 @@
+button{
+    box-shadow: none !important;
+}
+.offcanvas{
+    background-color: #8EC63F !important;
+}
+li{
+    background-color: transparent !important;
+    font-size: larger;
+    
+}
+a{
+    text-decoration: none !important;
+    color:black !important;
+}
+.test{
+    color:red;
+}
