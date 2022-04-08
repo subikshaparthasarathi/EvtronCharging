@@ -105,7 +105,7 @@ def activate(request, uidb64, token):
         user.status = "Active"
         user.save()
         views.signin(request)
-        return redirect('signupApp/host.html')
+        return redirect('loginApp/host.html')
 
     else:
         return render(request, 'signupApp/activation_failed.html')
