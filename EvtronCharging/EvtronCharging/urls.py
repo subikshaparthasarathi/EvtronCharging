@@ -20,4 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('loginApp.urls')),
     path('signupApp/', include('signupApp.urls')),
+    path('loginApp/', include('loginApp.urls')),
+    path('captcha/', include('captcha.urls')),
+    path('activate/<uidb64>/<token>', views.activate, name="activate")
 ]
