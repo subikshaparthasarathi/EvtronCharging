@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy&display=swap');
+
 /* SLIDER */
 
 button{
@@ -38,6 +40,13 @@ li{
 
 /* FORM */
 
+.head{
+  color:white;
+  text-align: center;
+  font-family: 'Sorts Mill Goudy', serif;  
+  margin-bottom: 30px;        /* form heading */
+}
+
   *,:after,:before{box-sizing:border-box}
   .clearfix:after,.clearfix:before{content:'';display:table}
   .clearfix:after{clear:both;display:block}
@@ -47,22 +56,27 @@ li{
     width:100%;
     margin:auto;
     max-width:525px;
-    min-height:750px;
+    min-height:850px;
     position:relative;
     margin-bottom: 3%;
-    margin-top: 3%;
+    margin-top: 3%;                       /* card */
+    
   }
   .login-html{
     width:100%;
     height:100%;
     position:absolute;
-    padding:90px 70px 50px 70px;
+    padding:70px 70px 50px 70px;
     background:#212529;
   }
   .tab{
-    color:#aaa;
+    color:#aaa;        
+    margin-left: 21%;            /* signin and signup tab */
   }
-
+.cap{
+  margin-top: 40px;
+  margin-bottom: 40px;                     /* captcha */
+}
   .login-html .sign-in-htm,
   .login-html .sign-up-htm{
     top:0;
@@ -72,21 +86,26 @@ li{
     position:absolute;
     transform:rotateY(180deg);
     backface-visibility:hidden;
-    transition:all .4s linear;
+    transition:all .4s linear;                 /* signin to signup */
   }
   .login-html .sign-in,
   .login-html .sign-up,
   .login-form .group .check{
     display:none;
   }
-  
+  .sign-in, .sign-up{
+    margin-left: 10%;
+    padding-left: 10%;
+    margin: auto;
+    text-align: center;
+  }
+
   .login-html .tab{
     font-size:22px;
-    margin-right:15px;
-    padding-bottom:5px;
-    margin:0 15px 10px 0;
     display:inline-block;
-    border-bottom:2px solid transparent;
+    margin-bottom: 5%;
+    padding-bottom: 1%;
+    border-bottom:2px solid transparent;            /* line below signin and signup */
   }
   .login-html .sign-in:checked + .tab,
   .login-html .sign-up:checked + .tab{
@@ -113,15 +132,15 @@ li{
   .login-form .group .button{
     border:none;
     padding:15px 20px;
-    border-radius:25px;
-    background:#aaa;
+    border-radius:20px;
+    background:white;
   }
   .login-form .group input[data-type="password"]{
     -webkit-text-security:circle;
   }
   .login-form .group .label{
     color:#8EC63F;
-    font-size:12px;
+    font-size:18px;
   }
   .login-form .group .button{
     background:#8EC63F;
@@ -175,7 +194,7 @@ li{
   
   .hr{
     height:2px;
-    margin:60px 0 50px 0;
+    margin:60px 0 50px 0;             /* forgot password */
     background:#aaa;
   }
   .foot-lnk{

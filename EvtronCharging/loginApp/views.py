@@ -2,10 +2,10 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
-from EvtronCharging import settings
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from EvtronCharging.EvtronCharging import settings
 from .models import Userbase_table
 from django.contrib.auth.hashers import make_password
 from django.utils.encoding import force_bytes, force_str
@@ -14,7 +14,6 @@ from loginApp import views
 from django.core.mail import send_mail, EmailMessage
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
-from signupApp.models import Customer
 from .forms import Myform
 from django.contrib.auth.hashers import check_password
 import datetime
@@ -71,7 +70,7 @@ def signup(request):
 
             current_site = get_current_site(request)
             email_subject = "confirm your mail @ AZ django login!!"
-            message2 = render_to_string('signupApp/email_confirmation.html', {
+            message2 = render_to_string('loginApp/email_confirmation.html', {
                 'name': myuser.fname,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(myuser.pk)),
@@ -108,7 +107,7 @@ def activate(request, uidb64, token):
         return redirect('loginApp/host.html')
 
     else:
-        return render(request, 'signupApp/activation_failed.html')
+        return render(request, 'loginApp/activation_failed.html')
 
 
 
@@ -121,7 +120,7 @@ def signin(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-        customer = Customer.get_customer_by_email(email)
+        customer = Userbase_table.get_customer_by_email(email)
         if customer:
 
             if customer.verified == 'True':  # verified email

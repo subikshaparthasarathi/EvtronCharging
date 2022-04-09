@@ -1,11 +1,10 @@
 {% extends 'loginApp/base.html' %}
 {% block content %}
 {% load static %}
-<body>
 
   <div class="login-wrap">
     <div class="login-html">
-   
+   <h2 class="head">HOST LOGIN</h2>
       <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
       <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
       <div class="login-form">
@@ -18,6 +17,10 @@
             <label for="pass" class="label">Password</label>
             <input id="pass" type="password" class="input" data-type="password">
           </div>
+          <div class="cap">
+            {{cap.captcha}}
+          </div>
+          
           <div class="group">
             <input type="submit" class="button" value="Sign In">
           </div>
@@ -46,6 +49,7 @@
             <label for="pass" class="label">Email Address</label>
             <input id="pass" type="text" class="input">
           </div>
+          <br>
           <div class="group">
             <input type="submit" class="button" value="Sign Up">
           </div>
@@ -59,6 +63,5 @@
  
   </div>
 
-</body>
 
 {% endblock %}

@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
+from loginApp import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('loginApp.urls')),
-    path('signupApp/', include('signupApp.urls')),
     path('loginApp/', include('loginApp.urls')),
     path('captcha/', include('captcha.urls')),
     path('activate/<uidb64>/<token>', views.activate, name="activate")

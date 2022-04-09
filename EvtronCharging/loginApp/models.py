@@ -14,7 +14,7 @@ class Userbase_table(models.Model):
         self.save()
 
     def usernameisExist(self):
-        if Customer.objects.filter(username=self.username):
+        if Userbase_table.objects.filter(username=self.username):
             print('true')
             return True
         else:
@@ -22,7 +22,7 @@ class Userbase_table(models.Model):
             return False
 
     def mailisExist(self):
-        if Customer.objects.filter(email=self.email):
+        if Userbase_table.objects.filter(email=self.email):
             return True
         else:
             return False
@@ -30,7 +30,7 @@ class Userbase_table(models.Model):
     @staticmethod
     def get_customer_by_email(email):
         try:
-            return Customer.objects.get(email=email)
+            return Userbase_table.objects.get(email=email)
         except:
             return False
 
