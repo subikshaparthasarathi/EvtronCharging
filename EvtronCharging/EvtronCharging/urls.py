@@ -16,12 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
-from loginApp import views
+from host import views
+from franchise import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('loginApp.urls')),
-    path('loginApp/', include('loginApp.urls')),
+    path('', include('host.urls')),
+    path('host/', include('host.urls')),
+    path('franchise/', include('franchise.urls')),
     path('captcha/', include('captcha.urls')),
-    path('activate/<uidb64>/<token>', views.activate, name="activate")
+    #path('activate/<uidb64>/<token>', views.activate, name="activate")
 ]
