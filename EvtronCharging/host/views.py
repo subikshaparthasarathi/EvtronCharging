@@ -6,7 +6,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from EvtronCharging import settings
-from .models import Userbase_table
+from .models import Usermaster_table
+from .models import Useractivity_table
 from django.contrib.auth.hashers import make_password
 from django.utils.encoding import force_bytes, force_str
 from .tokens import generate_token
@@ -29,7 +30,7 @@ def signup(request):
         pass1 = request.POST.get('pass1')
         pass2 = request.POST.get('pass2')
 
-        myuser = Userbase_table(username=username, email=email,
+        myuser = Usermaster_table(username=username, email=email,
                           pass1=pass1)
 
         # validation
@@ -85,7 +86,7 @@ def signup(request):
             email.fail_silently = True
             email.send()
 
-            return redirect('login/host.html')
+            return render (request, 'login/check.html')
     else:
         return render(request, 'login/host.html')
 
@@ -120,7 +121,8 @@ def signin(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-        customer = Userbase_table.get_customer_by_email(email)
+        customer = Usermaster_table.get_customer_by_email(email)
+        customer2 = Useractivity_table.get_loginlogout_by_email(email)
         if customer:
 
             if customer.verified == 'True':  # verified email
@@ -128,10 +130,10 @@ def signin(request):
 
                 if flag:
                     if cap.is_valid():
-                        customer.login_time = datetime.datetime.now()
-                        customer.logout_time = None
+                        customer2.login_time = datetime.datetime.now()
+                        customer2.logout_time = None
                         
-                        customer.save()
+                        customer2.save()
                         return render(request, 'login/check.html', {'uname': customer.fname})
                     else:
                         messages.error(request, "Invalid Captcha")

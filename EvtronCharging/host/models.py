@@ -1,10 +1,10 @@
 from django.db import models
 
 # Create your models here.
-class Userbase_table(models.Model):
+class Usermaster_table(models.Model):
     
     username = models.CharField(null=True, max_length=50)
-    email = models.EmailField(null=True, max_length=255)
+    email = models.EmailField(max_length=255, primary_key=True, null=False)
     pass1 = models.CharField(null=True, max_length=20)
     status =  models.CharField(null=True, max_length=20)
     verified =  models.CharField(null=True, max_length=20)
@@ -34,9 +34,17 @@ class Userbase_table(models.Model):
         except:
             return False
 
-class Usertransaction_table(models.Model):
+class Useractivity_table(models.Model):
+     email = models.ForeignKey(Usermaster_table, on_delete=models.CASCADE)
      login_time =  models.DateTimeField(null=True)
      logout_time = models.DateTimeField(null=True)
+
+     @staticmethod
+     def get_loginlogout_by_email(email):
+        try:
+            return Useractivity_table.objects.get(email=email)
+        except:
+            return False
 
 
 
