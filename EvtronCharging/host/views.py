@@ -105,7 +105,7 @@ def activate(request, uidb64, token):
         user.status = "Active"
         user.save()
         views.signin(request)
-        return redirect('login/host_signup.html')
+        return redirect('host_signin')
 
     else:
         return render(request, 'login/activation_failed.html')
@@ -123,9 +123,12 @@ def signin(request):
         password = request.POST.get('password')
         customer = Usermaster_table.get_customer_by_email(email)
         customer2 = Useractivity_table.get_loginlogout_by_email(email)
+        print(customer.email)
+       
         if customer:
 
-            if customer.verified == 'True':  # verified email
+        
+             if customer.verified == 'True':  # verified email
                 flag = check_password(password, customer.pass1)
 
                 if flag:
@@ -141,7 +144,7 @@ def signin(request):
                 else:
                     messages.error(request, "Invalid email or Password!!")
                     return HttpResponseRedirect('#')
-            else:
+             else:
                 messages.error(
                     request, "User not verified!! Please check your mail and verify!")
                 return HttpResponseRedirect('#')
