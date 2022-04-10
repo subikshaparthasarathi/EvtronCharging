@@ -1,0 +1,53 @@
+{% extends 'login/base.html' %}
+{% block content %}
+
+
+  <div class="mask d-flex align-items-center">
+      <div class="container ">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+              <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                  <div class="card" style="border-radius: 15px;">
+                      <div class="card-body p-5">
+                          <h2 class="text-uppercase text-center mb-5 head">Login to your account</h2>
+                          {% for message in messages %}
+                          <div class="alert alert-danger" role="alert">
+                              {{ message }}
+                          </div>
+                          {% endfor %}
+                          <form action="{% url 'host_signin' %}" method="POST">
+
+                              {% csrf_token %}
+
+                              {% if error %}
+                              <div class="alert alert-danger" role="alert">
+                                  {{error}}
+                              </div>
+                              {% endif %}
+                              <div class="form-outline mb-4">
+                                  <label class="form-label">Email</label>
+                                  <input required type="email" name="email" class="form-control form-control-lg"
+                                      placeholder="abc@email.com" />
+                              </div>
+                              <div class="form-outline mb-4">
+                                  <label class="form-label">Password</label>
+                                  <input required type="password" name="password" class="form-control form-control-lg"
+                                      placeholder="password" />
+                              </div>
+                      
+                                  <br>
+                                  {{cap.captcha}}
+                                <br><br>
+                              <div class="d-flex justify-content-center">
+                                  <button type="submit"
+                                      class="btn btn-success btn-block btn-lg text-body">Login</button>
+                              </div>
+                          
+                          </form>
+                      </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+{% endblock %}

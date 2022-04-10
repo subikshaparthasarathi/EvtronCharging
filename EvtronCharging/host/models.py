@@ -14,7 +14,7 @@ class Usermaster_table(models.Model):
         self.save()
 
     def usernameisExist(self):
-        if Userbase_table.objects.filter(username=self.username):
+        if Usermaster_table.objects.filter(username=self.username):
             print('true')
             return True
         else:
@@ -22,7 +22,7 @@ class Usermaster_table(models.Model):
             return False
 
     def mailisExist(self):
-        if Userbase_table.objects.filter(email=self.email):
+        if Usermaster_table.objects.filter(email=self.email):
             return True
         else:
             return False
@@ -30,7 +30,7 @@ class Usermaster_table(models.Model):
     @staticmethod
     def get_customer_by_email(email):
         try:
-            return Userbase_table.objects.get(email=email)
+            return Usermaster_table.objects.get(email=email)
         except:
             return False
 

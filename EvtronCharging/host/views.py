@@ -59,7 +59,7 @@ def signup(request):
             # Welcome Email
             subject = "Welcome to our website!!"
 
-            message = "Hello " + str(myuser.fname) + "!! \n" + \
+            message = "Hello " + str(myuser.username) + "!! \n" + \
                       "Welcome to our website! \nThank you for visiting us.\n \n\nThanking You\n-Team SASTRA"
 
             from_email = settings.EMAIL_HOST_USER
@@ -72,7 +72,7 @@ def signup(request):
             current_site = get_current_site(request)
             email_subject = "confirm your mail @ AZ django login!!"
             message2 = render_to_string('login/email_confirmation.html', {
-                'name': myuser.fname,
+                'name': myuser.username,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(myuser.pk)),
                 'token': generate_token.make_token(myuser)
@@ -88,7 +88,7 @@ def signup(request):
 
             return render (request, 'login/check.html')
     else:
-        return render(request, 'login/host.html')
+        return render(request, 'login/host_signup.html')
 
 # account activation
 
@@ -96,7 +96,7 @@ def signup(request):
 def activate(request, uidb64, token):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
-        user = Userbase_table.objects.get(pk=uid)
+        user = Usermaster_table.objects.get(pk=uid)
     except(TypeError, ValueError, OverflowError, user.DoesNotExist):
         user = None
 
@@ -105,7 +105,7 @@ def activate(request, uidb64, token):
         user.status = "Active"
         user.save()
         views.signin(request)
-        return redirect('login/host.html')
+        return redirect('login/host_signup.html')
 
     else:
         return render(request, 'login/activation_failed.html')
@@ -149,5 +149,5 @@ def signin(request):
             messages.error(request, "Invalid email!")
             return HttpResponseRedirect('#')
     else:
-        return render(request, 'login/host.html', {"cap": cap})
+        return render(request, 'login/host_signin.html', {"cap": cap})
         
