@@ -122,7 +122,7 @@ def signin(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         customer = Usermaster_table.get_customer_by_email(email)
-        customer2 = Useractivity_table.get_loginlogout_by_email(email)
+        #customer2 = Useractivity_table.get_loginlogout_by_email(email)
         print(customer.email)
        
         if customer:
@@ -133,9 +133,9 @@ def signin(request):
 
                 if flag:
                     if cap.is_valid():
-                        customer2.login_time = datetime.datetime.now()
-                        customer2.logout_time = None
+                        customer2 = Useractivity_table(login_time = datetime.datetime.now(), logout_time = None)
                         
+                        customer2.email = customer.email
                         customer2.save()
                         return render(request, 'login/check.html', {'uname': customer.fname})
                     else:

@@ -35,7 +35,7 @@ class Usermaster_table(models.Model):
             return False
 
 class Useractivity_table(models.Model):
-     email = models.ForeignKey(Usermaster_table, on_delete=models.CASCADE)
+     email = models.ForeignKey(Usermaster_table, default=None, on_delete=models.CASCADE)
      login_time =  models.DateTimeField(null=True)
      logout_time = models.DateTimeField(null=True)
 
