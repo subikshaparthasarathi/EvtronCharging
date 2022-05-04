@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AdminuserConfig(AppConfig):
+class SignupappConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'adminuser'
+    name = 'charging'

@@ -52,9 +52,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'host',
-    'franchise',
+    'charging',
     'captcha',
     'rest_framework',
+    
     'corsheaders',
 ]
 

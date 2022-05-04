@@ -17,13 +17,13 @@ from django.contrib import admin
 from django.urls import path,include
 
 from host import views
-from franchise import views
+from charging import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('host.urls')),
     path('host/', include('host.urls')),
-    path('franchise/', include('franchise.urls')),
+    path('charging/', include('charging.urls')),
     path('captcha/', include('captcha.urls')),
     #path('activate/<uidb64>/<token>', views.activate, name="activate")
 ]
