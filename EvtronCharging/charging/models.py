@@ -3,15 +3,15 @@ from django.db.models import Model
 
 class charging_mastertable(models.Model):
 
-    Station_ID = models.CharField(null=True, max_length=50)
-    Txn_ID = models.IntegerField(null=True, max_length=50)
+    Station_ID = models.CharField(null=True, max_length=20)
+    Txn_ID = models.CharField(null=True, max_length=50)
 
     def __str__(self):
         return self.Station_ID
 
 
 class charging_transactiontable(models.Model):
-    Station_ID = models.IntegerField(null=True)
+    Station_ID = models.CharField(null=True, max_length=20)
     Local_IP = models.GenericIPAddressField()
     Date_Time = models.DateTimeField(null=True)
     Uptime = models.TimeField(null=True)

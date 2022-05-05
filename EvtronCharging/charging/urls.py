@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import charging_det
+from .views import charging
 urlpatterns = [
-    path('charging/', charging_det)
+    path('',charging.as_view()),
     
 ]

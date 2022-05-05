@@ -1,21 +1,20 @@
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-from rest_framework.parsers import JSONParser
-from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 from .models import charging_mastertable,charging_transactiontable
-from .serializers import charging_mastertable, charging_transactiontable
+from .serializers import charging_mastertableSerializer,charging_transactiontableSerializer
 
-@csrf_exempt
-def charging_det(request):
-    if request.method == 'GET':
-         charging_transactions = charging_transactiontable.objects.all()
-         Serializer = charging_transactiontable_serializer(charging_transactions, many=True)
-         return JsonResponse(serializer.data, safe=False)
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        Serializer = charging_transactiontable_serializer(data = data)
+class charging(APIView):
 
-        if Serializer.is_valid():
-            Serializer.save()
-            return JsonResponse(serializer.data,status=201)
-        return JsonResponse(serializer.errors,status=400)
+    def get(self, request):
+        chargingdata = charging_transactiontable.objects.all()
+        serializer = charging_transactiontableSerializer(chargingdata, many = True)
+        return Response(serializer.data)
+
+    def post(self):
+        pass
+
+
+
