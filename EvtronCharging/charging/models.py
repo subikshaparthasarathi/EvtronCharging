@@ -17,7 +17,7 @@ class charging_transactiontable(models.Model):
     Uptime = models.TimeField(null=True)
     Relay_Status = models.IntegerField(null=True)
     Station_Status = models.CharField(null=True, max_length=50)
-    Elapsed_Time = models.TimeField(null=True)
+    Elapsed_Time = models.CharField(null=True, max_length=20)
     Amps = models.FloatField(null=True, max_length=50)
     AC_Voltage = models.FloatField(null=True, max_length=50)
     DC_Voltage = models.FloatField(null=True, max_length=50)
